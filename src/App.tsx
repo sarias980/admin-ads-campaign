@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
+
+import {getCompanyInfoAndProducts} from "./services/company.service";
+import CompanyActions from "./actions/companyActions";
+import AppNavigation from "./navigations/app-navigation";
+import Preloader from '../src/components/molecules/Preloader';
+
 import './App.css';
+import './style/style.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [load, updateLoad] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            updateLoad(false);
+        }, 1200);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        getCompanyInfoAndProducts().then(json => {
+            if (json){
+                CompanyActions.addCompany(json);
+            }
+        })
+    }, []);
+
+
+    return (
+        <div className="App">
+            <Router>
+                <Preloader load={load}/>
+                <div className="App">
+                    <AppNavigation/>
+                </div>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
