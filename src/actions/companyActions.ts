@@ -6,6 +6,7 @@ const CompanyActions = Reflux.createActions([
     'deleteCompany',
     'updateCompany',
     'getCompany',
+    'getCompanyById',
 ]);
 
 export default CompanyActions;

@@ -7,7 +7,7 @@ const AppNavigation = () => {
     return (
         <Routes>
             <Route path='/' element={<Companies />}></Route>
-            <Route path='/products' element={<Products />}></Route>
+            <Route path='/:companyId/products' element={<Products />}></Route>
     </Routes>
 )
 }

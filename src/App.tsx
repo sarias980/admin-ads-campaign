@@ -8,6 +8,7 @@ import Preloader from '../src/components/molecules/Preloader';
 
 import './App.css';
 import './style/style.css';
+import {parseCompaniesJsonData} from "./utils/parseJsonData";
 
 function App() {
     const [load, updateLoad] = useState(true);
@@ -23,7 +24,8 @@ function App() {
     useEffect(() => {
         getCompanyInfoAndProducts().then(json => {
             if (json){
-                CompanyActions.addCompanies([json]);
+                const parseData = parseCompaniesJsonData(json);
+                CompanyActions.addCompanies([parseData]);
             }
         })
     }, []);

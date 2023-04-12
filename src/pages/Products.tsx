@@ -1,21 +1,21 @@
 import Reflux from "reflux";
 import ProductsList from "../components/organisms/productsList";
 import ProductsStore from "../store/productsStore";
+import AdminStore from "../store/store";
 
-class Companies extends Reflux.Component {
+class Products extends Reflux.Component {
     constructor(props: any) {
         super(props);
-        this.state = {}; // <- note that we can still use normal state
-        this.stores = [ProductsStore];
+        this.stores = [ProductsStore, AdminStore];
     }
 
     render() {
         return (
             <div className={'page-container'}>
-                <ProductsList products={this.state.products}></ProductsList>
+                <ProductsList products={this.state.products} companies={this.state.companies}/>
             </div>
         )
     }
 }
 
-export default Companies;
+export default Products;

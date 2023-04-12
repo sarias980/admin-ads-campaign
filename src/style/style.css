@@ -32,14 +32,13 @@
 
 /* List container Style */
 .card-list-container {
-    margin: 15px 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
+
 .card-detail-list-container {
-    margin: 15px 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,7 +75,7 @@
     margin: 10px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
 
@@ -100,28 +99,85 @@
 .product-card {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     width: 95%;
+    min-width: 560px;
     padding: 0;
     margin: 15px auto;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.product-card-info {
+    display: flex;
+    flex-direction: row;
+    height: 160px;
+    width: 100%;
     cursor: pointer;
 }
 
-.product-card img {
+.product-card-info img {
     width: 250px;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 5px 5px 0 0;
+    height: 160px;
+    border-radius: 5px 0 0 5px;
 }
 
-.product-card h2 {
-    padding-left: 5px;
-    padding-right: 5px;
+.product-card-info-detail {
+    width: calc(100% - 250px);
+}
+
+.product-card-info-detail h2 {
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 1.2rem;
     font-weight: 500;
-    text-align: center;
+    text-align: left;
     color: #333;
 }
+.product-card-info-detail p {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: justify;
+    color: #333;
+}
+
+.product-card-info-detail h4 {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    color: #333;
+}
+
+/* Paragraph */
+.paragraph-wrapper {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.paragraph-wrapper p {
+    margin: 0;
+}
+
+.show-more-button {
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Facebook Ads List*/
+.facebook-ads-container{
+    margin: 5px;
+}
+.facebook-ads-header{
+
+}
+.facebook-ads-list{}

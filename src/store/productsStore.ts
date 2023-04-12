@@ -1,9 +1,9 @@
 import Reflux from 'reflux';
-import Products from "../pages/Products";
 import ProductActions from "../actions/productActions";
+import Product from "../types/Product";
 
 interface ProductsState {
-    products: Products[];
+    products: Product[];
 }
 
 class ProductsStore extends Reflux.Store {
@@ -14,11 +14,18 @@ class ProductsStore extends Reflux.Store {
     constructor() {
         super();
         this.listenTo(ProductActions.addProducts, this.onAddProducts);
+        this.listenTo(ProductActions.getProducts, this.onGetCompany);
     }
 
-    onAddProducts = (products: Products[]) => {
+    onAddProducts = (products: Product[]) => {
         console.log('Add products...', products)
         this.setState({ products: products });
+    };
+
+    onGetCompany = () => {
+        console.log('Get products...')
+        const { products } = this.state;
+        return products;
     };
 }
 
