@@ -1,8 +1,8 @@
 import Reflux from 'reflux';
 
 const ProductActions = Reflux.createActions([
-    'addProduct',
-    'deleteProduct',
+    'addProducts',
+    'deleteProducts',
     'updateProduct',
 ]);
 

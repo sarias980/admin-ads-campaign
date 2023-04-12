@@ -21,7 +21,7 @@ const CompaniesList: React.FC<Props> = ({ companies }) => {
             {
                 filteredCompanies?.length > 0 ? filteredCompanies.map((company) => (
                     <CompanyItemCard key={company.name} company={company}/>
-                )) : <h2>No data</h2>
+                )) : <h2>No data... :(</h2>
             }
         </div>
 

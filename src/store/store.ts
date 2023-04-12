@@ -20,7 +20,6 @@ class AdminStore extends Reflux.Store {
         this.listenTo(CompanyActions.addCompany, this.onAddCompany);
         this.listenTo(CompanyActions.addCompanies, this.onAddCompanies);
         this.listenTo(CompanyActions.getCompany, this.onGetCompany);
-        this.listenTo(FacebookAdsActions.addFacebookAd, this.onAddFacebookAd);
     }
 
     onAddCompany = (company: Company) => {
