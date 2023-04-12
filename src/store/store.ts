@@ -1,7 +1,5 @@
 import Reflux from 'reflux';
-import ProductActions from '../actions/productActions';
 import FacebookAdsActions from '../actions/facebookAdsActions';
-import Product  from '../types/Product';
 import FacebookAd from '../types/FacebookAd';
 import Company from "../types/Company";
 import CompanyActions from "../actions/companyActions";
@@ -20,12 +18,26 @@ class AdminStore extends Reflux.Store {
     constructor() {
         super();
         this.listenTo(CompanyActions.addCompany, this.onAddCompany);
+        this.listenTo(CompanyActions.addCompanies, this.onAddCompanies);
+        this.listenTo(CompanyActions.getCompany, this.onGetCompany);
         this.listenTo(FacebookAdsActions.addFacebookAd, this.onAddFacebookAd);
     }
 
     onAddCompany = (company: Company) => {
+        console.log('Add companies...', company)
         const { companies } = this.state;
-        this.setState({ products: [...companies, company] });
+        this.setState({ companies: [...companies, company] });
+    };
+
+    onAddCompanies = (companies: Company[]) => {
+        console.log('Add companies...', companies)
+        this.setState({ companies: companies });
+    };
+
+    onGetCompany = () => {
+        console.log('Get companies...')
+        const { companies } = this.state;
+        return companies;
     };
 
     onAddFacebookAd = (facebookAd: FacebookAd) => {

@@ -23,7 +23,7 @@ function App() {
     useEffect(() => {
         getCompanyInfoAndProducts().then(json => {
             if (json){
-                CompanyActions.addCompany(json);
+                CompanyActions.addCompanies([json]);
             }
         })
     }, []);
