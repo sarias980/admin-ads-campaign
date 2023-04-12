@@ -1,31 +1,34 @@
 import Reflux from 'reflux';
-import FacebookAdsActions from '../actions/facebookAdsActions';
 import FacebookAd from '../types/FacebookAd';
 import Company from "../types/Company";
 import CompanyActions from "../actions/companyActions";
+import Product from "../types/Product";
 
 interface AdminState {
     companies: Company[];
+    company: Company | undefined;
+    product: Product | undefined;
     facebookAds: FacebookAd[];
 }
 
 class AdminStore extends Reflux.Store {
     state: AdminState = {
+        company: undefined,
         companies: [],
-        facebookAds: [],
+        product: undefined,
+        facebookAds: []
     };
 
     constructor() {
         super();
         this.listenTo(CompanyActions.addCompany, this.onAddCompany);
         this.listenTo(CompanyActions.addCompanies, this.onAddCompanies);
-        this.listenTo(CompanyActions.getCompany, this.onGetCompany);
+        this.listenTo(CompanyActions.addProduct, this.onAddProduct);
     }
 
     onAddCompany = (company: Company) => {
-        console.log('Add companies...', company)
-        const { companies } = this.state;
-        this.setState({ companies: [...companies, company] });
+        console.log('Add company...', company)
+        this.setState({ company: company });
     };
 
     onAddCompanies = (companies: Company[]) => {
@@ -33,10 +36,9 @@ class AdminStore extends Reflux.Store {
         this.setState({ companies: companies });
     };
 
-    onGetCompany = () => {
-        console.log('Get companies...')
-        const { companies } = this.state;
-        return companies;
+    onAddProduct = (product: Product) => {
+        console.log('Add product...', product);
+        this.setState({ product: product });
     };
 
     onAddFacebookAd = (facebookAd: FacebookAd) => {

@@ -1,21 +1,19 @@
-import Reflux from "reflux";
+import React from "react";
+import Company from "../types/Company";
 import ProductsList from "../components/organisms/productsList";
-import ProductsStore from "../store/productsStore";
-import AdminStore from "../store/store";
 
-class Products extends Reflux.Component {
-    constructor(props: any) {
-        super(props);
-        this.stores = [ProductsStore, AdminStore];
-    }
+interface ProductsProps {
+    company:Company
+}
 
-    render() {
-        return (
-            <div className={'page-container'}>
-                <ProductsList products={this.state.products} companies={this.state.companies}/>
-            </div>
-        )
-    }
+const Products: React.FC<ProductsProps> = ({company}) => {
+    return (
+        <div className={'page-container'}>
+            {
+                company ? <ProductsList company={company}/> : <></>
+            }
+        </div>
+    )
 }
 
 export default Products;

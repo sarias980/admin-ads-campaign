@@ -1,32 +1,19 @@
 import React, {useEffect, useState} from "react";
 import Company from "../../types/Company";
-import CompanyActions from "../../actions/companyActions";
+
 import SearchHeaderList from "../molecules/SearchHeaderList";
-import CompanyItemCard from "../molecules/CompanyItemCard";
-import Product from "../../types/Product";
 import ProductsItemCard from "../molecules/ProductItemCard";
-import {useParams} from "react-router-dom";
 
 interface ProductsListProps {
-    products: Product[],
-    companies: Company[]
+    company: Company
 }
 
-const ProductsList: React.FC<ProductsListProps> = ({ products , companies}) => {
-    const params = useParams();
-    const [company, setCompany] = useState<Company>();
-
+const ProductsList: React.FC<ProductsListProps> = ({ company }) => {
     const [searchTerm, setSearchTerm] = useState("");
 
-    const filteredProducts = products?.filter((product) =>
+    const filteredProducts = company?.products?.filter((product) =>
         product.productName.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-    useEffect(() => {
-        if (params.companyId){
-            setCompany(companies.find( c => c.id === params.companyId));
-        }
-    })
 
     return <div>
         <SearchHeaderList searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>

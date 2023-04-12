@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Company from "../../types/Company";
-import CompanyActions from "../../actions/companyActions";
 import SearchHeaderList from "../molecules/SearchHeaderList";
 import CompanyItemCard from "../molecules/CompanyItemCard";
 
