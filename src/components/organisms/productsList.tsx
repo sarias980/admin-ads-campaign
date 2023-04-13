@@ -1,32 +1,27 @@
-import React, {useEffect, useState} from "react";
-import Company from "../../types/Company";
+import React from "react";
 
-import SearchHeaderList from "../molecules/SearchHeaderList";
 import ProductsItemCard from "../molecules/ProductItemCard";
 
+import Product from "../../types/Product";
+
+
 interface ProductsListProps {
-    company: Company
+    filteredProducts: Product[]
 }
 
-const ProductsList: React.FC<ProductsListProps> = ({ company }) => {
-    const [searchTerm, setSearchTerm] = useState("");
+const ProductsList: React.FC<ProductsListProps> = ({filteredProducts}) => {
 
-    const filteredProducts = company?.products?.filter((product) =>
-        product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return (
+        <div>
+            <div className={'card-detail-list-container'}>
+                {
+                    filteredProducts?.length > 0 ? filteredProducts.map((product) => (
+                        <ProductsItemCard key={product.productName} product={product}/>
+                    )) : <h2>No data... :(</h2>
+                }
+            </div>
 
-    return <div>
-        <SearchHeaderList searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-        <div className={'card-detail-list-container'}>
-            <h2>{company?.name}</h2>
-            {
-                filteredProducts?.length > 0 ? filteredProducts.map((product) => (
-                    <ProductsItemCard key={product.productName} product={product}/>
-                )) : <h2>No data... :(</h2>
-            }
-        </div>
-
-    </div>
+        </div>)
 }
 
 export default ProductsList;

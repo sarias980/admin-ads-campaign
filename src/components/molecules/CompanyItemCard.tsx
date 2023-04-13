@@ -1,7 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import Company from "../../types/Company";
-import CompanyActions from "../../actions/companyActions";
+import Actions from "../../actions/actions";
 
 interface CompanyItemCardProps {
     company: Company;
@@ -12,7 +12,7 @@ const CompanyItemCard: React.FC<CompanyItemCardProps> = ({company}) => {
 
     const setCompanyProducts = () => {
         if (company.products?.length> 0){
-            CompanyActions.addCompany(company);
+            Actions.addCompany(company);
             navigate("/" +company.id+"/products")
         }
     }

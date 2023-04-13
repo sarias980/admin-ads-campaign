@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 import {getCompanyInfoAndProducts} from "./services/company.service";
-import CompanyActions from "./actions/companyActions";
+import Actions from "./actions/actions";
 import AppNavigation from "./navigations/app-navigation";
 import Preloader from '../src/components/molecules/Preloader';
 
@@ -25,7 +25,7 @@ function App() {
         getCompanyInfoAndProducts().then(json => {
             if (json){
                 const parseData = parseCompaniesJsonData(json);
-                CompanyActions.addCompanies([parseData]);
+                Actions.addCompanies([parseData]);
             }
         })
     }, []);

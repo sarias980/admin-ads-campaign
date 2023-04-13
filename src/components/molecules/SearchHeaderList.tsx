@@ -1,5 +1,6 @@
 import React from "react";
 import Company from "../../types/Company";
+import Header from "../organisms/navHeader";
 
 interface SearchHeaderListProps {
     searchTerm: string;
@@ -9,7 +10,6 @@ interface SearchHeaderListProps {
 const SearchHeaderList: React.FC<SearchHeaderListProps> = ({searchTerm, setSearchTerm}) => {
 
     return(
-        <header>
             <div className={'filter-header'}>
                 <input
                     type="text"
@@ -18,7 +18,6 @@ const SearchHeaderList: React.FC<SearchHeaderListProps> = ({searchTerm, setSearc
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
-        </header>
     )
 }
 

@@ -1,36 +1,36 @@
-import FacebookAd from "../../types/FacebookAd";
-import FacebookAdCreateModal from "../molecules/FacebookAdCreateModal";
+import Product from "../../types/Product";
+import {useNavigate} from "react-router-dom";
+import ItemButton from "../atoms/Button";
 
 interface FacebookAdsListProps {
-    ads: FacebookAd[]
+    product: Product
 }
 
 const FacebookAdsList = (props: FacebookAdsListProps) => {
-    const handleCreateAd = (ad: FacebookAd) => {
-        console.log(ad);
-        // Aquí podrías enviar el objeto ad a un servidor o almacenarlo en el estado de la aplicación
+    const navigate = useNavigate();
+
+    const openCreateAd = () => {
+        if (props.product){
+            navigate("/" + encodeURIComponent(props.product.productName) + "/ads/create");
+        }
     };
 
     return (
         <div className={'facebook-ads-container'}>
             <div className={'facebook-ads-header'}>
                 <h3>
-                    Facebook Ads
+                    {props?.product?.productName} - Facebook Ads
                 </h3>
-                <button>
-                    Add
-                </button>
+                <ItemButton text={'Create new'} onClick={openCreateAd}/>
             </div>
             <div className={'facebook-ads-list'}>
                 {
-                    props?.ads?.length > 0 ? props?.ads.map((ad) => (
+                    props?.product?.facebookAds?.length > 0 ? props?.product.facebookAds.map((ad) => (
                         <></>
-                    )) : <h4>No ads at the moment</h4>
+                    )) : <h4>No ads at the moment...</h4>
                 }
 
             </div>
-            <div id="portal"></div>
-            <FacebookAdCreateModal onCreate={handleCreateAd}/>
         </div>
     )
 }

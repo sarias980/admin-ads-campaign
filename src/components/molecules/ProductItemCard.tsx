@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Product from "../../types/Product";
 import Paragraph from "../atoms/Paragraph";
 import {useNavigate} from "react-router-dom";
-import CompanyActions from "../../actions/companyActions";
+import Actions from "../../actions/actions";
 
 interface ProductsItemCardProps {
     product: Product;
@@ -13,7 +13,7 @@ const ProductsItemCard: React.FC<ProductsItemCardProps> = ({product}) => {
 
     const navToProductsAds = () => {
         if (product){
-            CompanyActions.addProduct(product);
+            Actions.addProduct(product);
             navigate("/" + encodeURIComponent(product.productName) + "/ads");
         }
     };

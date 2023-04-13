@@ -4,6 +4,7 @@ import Reflux from "reflux";
 import Companies from "../pages/Companies";
 import Products from "../pages/Products";
 import AdsProductsView from "../pages/AdsProductsView";
+import CreateAd from "../pages/CreateAd";
 
 class AppNavigation extends Reflux.Component {
 
@@ -21,6 +22,7 @@ class AppNavigation extends Reflux.Component {
                 <Route path='/' element={<Companies companies={this.state.companies}/>}/>
                 <Route path='/:companyId/products' element={<Products company={this.state.company}/>}/>
                 <Route path='/:productId/ads' element={<AdsProductsView product={this.state.product}/>}/>
+                <Route path='/:productId/ads/create' element={<CreateAd company={this.state.company} product={this.state.product}/>}/>
             </Routes>
         )
     }
