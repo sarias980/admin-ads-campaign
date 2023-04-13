@@ -8,15 +8,13 @@ interface AdminState {
     companies: Company[];
     company: Company | undefined;
     product: Product | undefined;
-    facebookAds: FacebookAd[];
 }
 
 class AdminStore extends Reflux.Store {
     state: AdminState = {
         company: undefined,
         companies: [],
-        product: undefined,
-        facebookAds: []
+        product: undefined
     };
 
     constructor() {
@@ -44,10 +42,13 @@ class AdminStore extends Reflux.Store {
 
     onAddFacebookAd = (facebookAd: FacebookAd) => {
         console.log('Add facebookAd...', facebookAd);
-        const { facebookAds, product, company, companies } = this.state;
-        if (facebookAd && product && company && companies){
-            this.setState({ facebookAds: [...facebookAds, facebookAd] });
+        const { product, company, companies } = this.state;
+        if (facebookAd && product){
+            console.log(product)
+            product.facebookAds ? product.facebookAds.push(facebookAd) : product.facebookAds = [facebookAd];
+            this.setState({ product: product });
 
+            /*
             product.facebookAds = facebookAds;
             this.setState({ product: product });
 
@@ -64,7 +65,7 @@ class AdminStore extends Reflux.Store {
             if (companyObject){
                 companyObject.products = company.products;
                 this.setState({ companies: companies });
-            }
+            }*/
         }
 
     };

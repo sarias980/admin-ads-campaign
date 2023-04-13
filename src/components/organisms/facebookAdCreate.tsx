@@ -22,15 +22,29 @@ const FacebookAdCreate = (props: FacebookAdCreateProps) => {
     const [headline, setHeadline] = useState('');
     const [description, setDescription] = useState('');
     const [cta, setCta] = useState<CTA>(CTA.DOWNLOAD);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleSubmit = () => {
+        setSuccess('');
+        setError('');
         if (checkAdData(img,headline,description,cta)){
             const newAd = new FacebookAd(img, headline, description, cta);
             Action.updateProductAddFacebookAd(newAd)
-        }
-
-        //props.onCreate(newAd);
+            successAction();
+        } else (
+            errorAction()
+        )
     };
+
+    const successAction = () => {
+        setSuccess('Advertisement created correctly! :)')
+        navigate(-1)
+    }
+
+    const errorAction = () => {
+        setError('Check the parameters! All the camps are required...')
+    }
 
     return (
         <div className="create-ad-container">
@@ -39,11 +53,13 @@ const FacebookAdCreate = (props: FacebookAdCreateProps) => {
                 <FacebookAdMockup company={props.company} product={props.product} img={img} headline={headline} description={description} cta={cta}/>
             </div>
             <div className="create-ad-form-content">
-                <h2>Crear anuncio de Facebook</h2>
+                <h2>Create new Facebook advertisement</h2>
+                <p className={'p-error'}>{error}</p>
                 <ItemInput placeholder={'Headline'} value={headline} setValue={setHeadline}/>
                 <ItemInput placeholder={'Description'} value={description} setValue={setDescription}/>
                 <ItemSelect placeholder={'Call to action'} value={cta} setValue={setCta} options={Object.values(CTA)}/>
                 <ItemImageInput img={img} setValue={(newImg:string) => setImg([...img,newImg ])}/>
+                <p className={'p-success'}>{success}</p>
                 <ItemButton text={'Create'} onClick={handleSubmit}/>
             </div>
         </div>

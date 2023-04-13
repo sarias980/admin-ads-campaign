@@ -21,7 +21,7 @@ class AppNavigation extends Reflux.Component {
             <Routes>
                 <Route path='/' element={<Companies companies={this.state.companies}/>}/>
                 <Route path='/:companyId/products' element={<Products company={this.state.company}/>}/>
-                <Route path='/:productId/ads' element={<AdsProductsView product={this.state.product}/>}/>
+                <Route path='/:productId/ads' element={<AdsProductsView company={this.state.company} product={this.state.product}/>}/>
                 <Route path='/:productId/ads/create' element={<CreateAd company={this.state.company} product={this.state.product}/>}/>
             </Routes>
         )
