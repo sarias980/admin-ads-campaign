@@ -23,9 +23,11 @@ const ProductsItemCard: React.FC<ProductsItemCardProps> = ({product}) => {
             <div className="product-card-info">
                 <img src={product.productImage} alt={product.productName}/>
                 <div className="product-card-info-detail">
-                    <h2>{product.productName}</h2>
+                    <div className="product-card-info-detail-header">
+                        <h2>{product.productName}</h2> <h4>{product.price} €</h4>
+                    </div>
                     <Paragraph maxLines={3} text={product.productDescription}/>
-                    <h4>{product.price} €</h4>
+
                 </div>
             </div>
         </div>

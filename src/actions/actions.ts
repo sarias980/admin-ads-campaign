@@ -4,7 +4,8 @@ const Actions = Reflux.createActions([
     'addCompany',
     'addCompanies',
     'addProduct',
-    'updateProductAddFacebookAd'
+    'updateProductAddFacebookAd',
+    'deleteFacebookAd'
 ]);
 
 export default Actions;

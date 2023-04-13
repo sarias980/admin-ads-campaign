@@ -194,9 +194,10 @@
 
 .company-card img {
     width: 100%;
-    height: auto;
-    margin-bottom: 10px;
     border-radius: 5px 5px 0 0;
+    object-fit: cover;
+    border-style: none;
+    overflow: clip;
 }
 
 .company-card h2 {
@@ -241,10 +242,16 @@
 .product-card-info-detail {
     width: calc(100% - 250px);
 }
+.product-card-info-detail-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .product-card-info-detail h2 {
     padding-left: 20px;
     padding-right: 20px;
+    margin: auto 0;
     font-size: 1.2rem;
     font-weight: 500;
     text-align: left;
@@ -264,9 +271,9 @@
     padding-left: 20px;
     padding-right: 20px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
     text-align: left;
-    color: #333;
+    color: #30444F;
 }
 
 /* Paragraph */
@@ -477,8 +484,8 @@
 
 .logo-image {
     height: 50px;
-    object-fit: cover;
     width: 50px;
+    object-fit: cover;
     border-style: none;
     overflow: clip;
     border-radius: 50px;
@@ -592,4 +599,58 @@
     height: 32px;
     justify-content: center;
     padding: 0 2px;
+}
+
+/* Delete Modal Confirm */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-confirm,
+.modal-cancel {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-confirm {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.modal-cancel {
+    background-color: #bdc3c7;
+    color: #2c3e50;
 }

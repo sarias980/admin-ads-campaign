@@ -23,49 +23,43 @@ class AdminStore extends Reflux.Store {
         this.listenTo(Actions.addCompanies, this.onAddCompanies);
         this.listenTo(Actions.addProduct, this.onAddProduct);
         this.listenTo(Actions.updateProductAddFacebookAd, this.onAddFacebookAd);
+        this.listenTo(Actions.deleteFacebookAd, this.onDeleteFacebookAd);
     }
 
     onAddCompany = (company: Company) => {
         console.log('Add company...', company)
-        this.setState({ company: company });
+        this.setState({company: company});
     };
 
     onAddCompanies = (companies: Company[]) => {
         console.log('Add companies...', companies)
-        this.setState({ companies: companies });
+        this.setState({companies: companies});
     };
 
     onAddProduct = (product: Product) => {
         console.log('Add product...', product);
-        this.setState({ product: product });
+        this.setState({product: product});
     };
 
     onAddFacebookAd = (facebookAd: FacebookAd) => {
         console.log('Add facebookAd...', facebookAd);
-        const { product, company, companies } = this.state;
-        if (facebookAd && product){
-            console.log(product)
+        const {product} = this.state;
+        if (facebookAd && product) {
             product.facebookAds ? product.facebookAds.push(facebookAd) : product.facebookAds = [facebookAd];
-            this.setState({ product: product });
+            this.setState({product: product});
+        }
 
-            /*
-            product.facebookAds = facebookAds;
-            this.setState({ product: product });
+    };
 
-            const productObject = company.products.find((p) => p.productName === product.productName)
-
-            if (productObject){
-                productObject.facebookAds = facebookAds;
-                this.setState({ company: company });
+    onDeleteFacebookAd = (facebookAd: FacebookAd) => {
+        console.log('Delete facebookAd...', facebookAd);
+        const {product} = this.state;
+        if (facebookAd && product) {
+            const newList = product.facebookAds.filter((ad) => ad.id !== facebookAd.id)
+            if (newList){
+                product.facebookAds = newList
+                this.setState({product: product});
             }
-
-
-            const companyObject = companies.find((c) => c.id === company.id)
-
-            if (companyObject){
-                companyObject.products = company.products;
-                this.setState({ companies: companies });
-            }*/
         }
 
     };

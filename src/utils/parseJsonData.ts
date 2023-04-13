@@ -7,3 +7,7 @@ export const parseCompaniesJsonData = (json: any) => {
         id: idUnico,
     };
 }
+
+export function generateUniqueId() {
+    return uuidv4();
+}

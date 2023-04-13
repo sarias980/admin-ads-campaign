@@ -9,6 +9,7 @@ import Preloader from '../src/components/molecules/Preloader';
 import './App.css';
 import './style/style.css';
 import {parseCompaniesJsonData} from "./utils/parseJsonData";
+import {ToastContainer} from "react-toastify";
 
 function App() {
     const [load, updateLoad] = useState(true);
@@ -37,6 +38,7 @@ function App() {
                 <Preloader load={load}/>
                 <div className="App">
                     <AppNavigation/>
+                    <ToastContainer />
                 </div>
             </Router>
         </div>

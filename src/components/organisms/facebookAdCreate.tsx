@@ -10,6 +10,8 @@ import ItemButton from "../atoms/Button";
 import ItemImageInput from "../atoms/ItemImageInput";
 import checkAdData from "../../utils/checkAdData";
 import Action from "../../actions/actions";
+import {toast} from "react-toastify";
+import {generateUniqueId} from "../../utils/parseJsonData";
 
 interface FacebookAdCreateProps {
     company: Company;
@@ -29,7 +31,7 @@ const FacebookAdCreate = (props: FacebookAdCreateProps) => {
         setSuccess('');
         setError('');
         if (checkAdData(img,headline,description,cta)){
-            const newAd = new FacebookAd(img, headline, description, cta);
+            const newAd = new FacebookAd(generateUniqueId(), img, headline, description, cta);
             Action.updateProductAddFacebookAd(newAd)
             successAction();
         } else (
@@ -38,7 +40,7 @@ const FacebookAdCreate = (props: FacebookAdCreateProps) => {
     };
 
     const successAction = () => {
-        setSuccess('Advertisement created correctly! :)')
+        toast.success('Advertisement created correctly! :)');
         navigate(-1)
     }
 
@@ -59,7 +61,6 @@ const FacebookAdCreate = (props: FacebookAdCreateProps) => {
                 <ItemInput placeholder={'Description'} value={description} setValue={setDescription}/>
                 <ItemSelect placeholder={'Call to action'} value={cta} setValue={setCta} options={Object.values(CTA)}/>
                 <ItemImageInput img={img} setValue={(newImg:string) => setImg([...img,newImg ])}/>
-                <p className={'p-success'}>{success}</p>
                 <ItemButton text={'Create'} onClick={handleSubmit}/>
             </div>
         </div>

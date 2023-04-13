@@ -24,13 +24,15 @@ export enum CTA {
 };
 
 export default class FacebookAd {
-    constructor(img: string[], headline: string, description: string, cta: CTA) {
+    constructor(id:string, img: string[], headline: string, description: string, cta: CTA) {
+        this.id = id;
         this.img = img;
         this.headline = headline;
         this.description = description;
         this.cta = cta ? cta : CTA.DOWNLOAD;
     }
 
+    id:string
     img: string[];
     headline: string;
     description: string;
