@@ -4,18 +4,17 @@ import {useNavigate} from "react-router-dom";
 import FacebookAdMockup from "../molecules/FacebookAdMockup";
 import Company from "../../types/Company";
 import Product from "../../types/Product";
-import ItemInput from "../atoms/Input";
-import ItemSelect from "../atoms/ItemSelect";
-import ItemButton from "../atoms/Button";
-import ItemImageInput from "../atoms/ItemImageInput";
 import checkAdData from "../../utils/checkAdData";
 import Action from "../../actions/actions";
 import {toast} from "react-toastify";
 import {generateUniqueId} from "../../utils/parseJsonData";
+import CreateOrUpdateFacebookAdForm from "../molecules/createFacebookAdForm";
+import Actions from "../../actions/actions";
 
 interface FacebookAdCreateProps {
     company: Company;
     product: Product;
+    ad?: FacebookAd;
 }
 
 const FacebookAdCreate = (props: FacebookAdCreateProps) => {
@@ -24,15 +23,15 @@ const FacebookAdCreate = (props: FacebookAdCreateProps) => {
     const [headline, setHeadline] = useState('');
     const [description, setDescription] = useState('');
     const [cta, setCta] = useState<CTA>(CTA.DOWNLOAD);
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
 
     const handleSubmit = () => {
-        setSuccess('');
-        setError('');
-        if (checkAdData(img,headline,description,cta)){
-            const newAd = new FacebookAd(generateUniqueId(), img, headline, description, cta);
-            Action.updateProductAddFacebookAd(newAd)
+        if (checkAdData(img, headline, description, cta)) {
+            const newAd = new FacebookAd(props?.ad?.id ? props.ad.id: generateUniqueId(), img, headline, description, cta);
+            if (props.ad){
+                Actions.updateFacebookAd(newAd)
+            } else {
+                Action.updateProductAddFacebookAd(newAd)
+            }
             successAction();
         } else (
             errorAction()
@@ -45,24 +44,28 @@ const FacebookAdCreate = (props: FacebookAdCreateProps) => {
     }
 
     const errorAction = () => {
-        setError('Check the parameters! All the camps are required...')
+        toast.error('Advertisement created correctly! :)');
     }
+
+    useEffect(() => {
+        if (props.ad){
+            setImg(props.ad.img);
+            setHeadline(props.ad.headline);
+            setDescription(props.ad.description);
+            setCta(props.ad.cta);
+        }
+    }, [props.ad])
 
     return (
         <div className="create-ad-container">
-
             <div className={'create-ad-mockup-container'}>
-                <FacebookAdMockup company={props.company} product={props.product} img={img} headline={headline} description={description} cta={cta}/>
+                <FacebookAdMockup company={props.company} product={props.product} img={img} headline={headline}
+                                  description={description} cta={cta}/>
             </div>
-            <div className="create-ad-form-content">
-                <h2>Create new Facebook advertisement</h2>
-                <p className={'p-error'}>{error}</p>
-                <ItemInput placeholder={'Headline'} value={headline} setValue={setHeadline}/>
-                <ItemInput placeholder={'Description'} value={description} setValue={setDescription}/>
-                <ItemSelect placeholder={'Call to action'} value={cta} setValue={setCta} options={Object.values(CTA)}/>
-                <ItemImageInput img={img} setValue={(newImg:string) => setImg([...img,newImg ])}/>
-                <ItemButton text={'Create'} onClick={handleSubmit}/>
-            </div>
+            <CreateOrUpdateFacebookAdForm company={props.company} product={props.product} img={img} headline={headline}
+                                          description={description} cta={cta} setDescription={setDescription}
+                                          setHeadline={setHeadline} handleSubmit={handleSubmit}
+                                          setCta={setCta} setImg={setImg}/>
         </div>
     );
 }
