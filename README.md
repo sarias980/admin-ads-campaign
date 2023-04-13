@@ -1,47 +1,39 @@
-# Getting Started with Create React App
+# admin-ads-campaign
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project aims to create a web application that simplifies the management of social ads on Facebook. The application
+will enable the user to view, create, modify, and remove Facebook ads, each comprising one or more images, a
+description, a headline, and a call-to-action. The tool will support multiple posts for various products, which can be
+found in the provided link. For reference, a sample Facebook ad can be viewed
+at https://admockups.com/facebook-ad-mockup.
 
-## Available Scripts
+# Getting Started with the React App
 
-In the project directory, you can run:
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). to start to test
+the project you need to follow the next steeps:
+
+### Install all the requirements
+
+To do that you can run: `yarn install` or `npm i` in the project directory.
+
+After do that you can run the local server using :
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The page will lunch in your browser automatically.
 
-### `npm test`
+## Next steps
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1) Integration with other social media platforms: In addition to Facebook, integrating other social media platforms like
+   Instagram and Twitter would allow users to manage all their social media ads in one place.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2) Improved user interface design: Developing a more attractive and user-friendly interface would improve the user
+   experience and increase adoption of the application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3) Advanced ad customization: Implementing advanced ad customization options such as audience targeting, ad scheduling,
+   and goal definition would help users achieve better results from their ad campaigns.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# admin-ads-campaign
